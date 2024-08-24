@@ -1,43 +1,43 @@
 #pragma once
-/* Stage.h */
-#define STAGE_MAX_X 30
-#define STAGE_MAX_Y 20
-#define CELL 15
+#include"Picture.h"
+#include<fstream>
+#include<sstream>
+#include<string>
 
+const int MAP_MAX_X = 30;
+const int MAP_MAX_Y = 20;
+const int CELL = 32;	//ˆê•Ó‚Ì’·‚³
 
-class STAGE
-{
+class STAGE {
 public:
+	struct {
+		int Type[MAP_MAX_X][MAP_MAX_Y];
 
-	struct
-	{
-		int Type[STAGE_MAX_X][STAGE_MAX_Y];
 	}Chip;
 
-	void Read()
-	{
-		FILE *stage;
-		fopen_s(&stage, "CourceFile/WorldMap.txt", "r");
-
-		for (int y = 0; y < STAGE_MAX_Y; y++)
-		{
-			for (int x = 0; x < STAGE_MAX_X; x++)
-			{
-				fscanf_s(stage, "%d", &Chip.Type[x][y]);
+	void Read() {
+		std::ifstream file("CourceMap/WorldMap.txt");
+		std::string line;
+		int y = 0;
+		while (std::getline(file, line)) {
+			std::istringstream stream(line);
+			std::string field;
+			int x = 0;
+			while (std::getline(stream, field, ' ')) {
+				Chip.Type[x][y] = std::stoi(field);
+				x++;
 			}
+			y++;
 		}
-	};
 
-	void Draw(int Lateral, int Longitudinal)
-	{
+	}
+
+	void Draw() {
 		int pic = 0;
 
-		for (int y = 0; y < STAGE_MAX_Y; y++)
-		{
-			for (int x = 0; x < STAGE_MAX_X; x++)
-			{
-				switch (Chip.Type[x + Lateral][y + Longitudinal])
-				{
+		for (int y = 0; y < MAP_MAX_Y; y++) {
+			for (int x = 0; x < MAP_MAX_X; x++) {
+				switch (Chip.Type[x][y]) {
 				case 0:
 					pic = Picture.Map[0];
 					break;
@@ -58,78 +58,24 @@ public:
 					break;
 				case 6:
 					pic = Picture.Map[6];
-					break;
 				case 7:
 					pic = Picture.Map[7];
 					break;
 				case 8:
 					pic = Picture.Map[8];
 					break;
-				case 9:
-					pic = Picture.Map[9];
-					break;
-				case 10:
-					pic = Picture.Map[10];
-					break;
-				case 11:
-					pic = Picture.Map[11];
-					break;
-				case 12:
-					pic = Picture.Map[12];
-					break;
-				case 13:
-					pic = Picture.Map[13];
-					break;
-				case 14:
-					pic = Picture.Map[14];
-					break;
-				case 15:
-					pic = Picture.Map[15];
-					break;
-				case 16:
-					pic = Picture.Grace_River[0];
-					break;
-				case 17:
-					pic = Picture.Grace_River[1];
-					break;
-				case 18:
-					pic = Picture.Grace_River[2];
-					break;
-				case 19:
-					pic = Picture.Grace_River[3];
-					break;
-				case 20:
-					pic = Picture.Grace_River2[0];
-					break;
-				case 21:
-					pic = Picture.Grace_River2[1];
-					break;
-				case 22:
-					pic = Picture.Grace_River2[2];
-					break;
-				case 23:
-					pic = Picture.Grace_River2[3];
-					break;
-				case 24:
-					pic = Picture.Fill_Grace[0];
-					break;
-				case 25:
-					pic = Picture.Fill_Grace[1];
-					break;
-				case 26:
-					pic = Picture.Fill_Grace[2];
-					break;
-				case 27:
-					pic = Picture.Fill_Grace[3];
-					break;
+
+
+				
 				}
-				DrawGraph(CELL * x, CELL * y, pic, FALSE);
+				DrawGraph(CELL * x, CELL * y, pic, false);
 			}
-		};
-	};
+		}
+	}
 
 private:
 
-};
 
+
+};
 STAGE Stage;

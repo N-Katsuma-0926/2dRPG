@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Picture.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Sub.h" />
     <ClInclude Include="Title.h" />

@@ -1,10 +1,8 @@
-#define WIN_X (256)
-#define WIN_Y (240)
 
 enum COURCE
 {
     START,
-    WORLD,
+    MAP,
 };
 int Scene = COURCE::START;
 
@@ -12,6 +10,10 @@ int Scene = COURCE::START;
 #include "Picture.h"
 #include "Sub.h"
 #include "Title.h"
+//#include "player.h"
+#include "Stage.h"
+
+
 
 int WINAPI WinMain(
     _In_ HINSTANCE hInstance,
@@ -23,11 +25,11 @@ int WINAPI WinMain(
     DxLib_Init();
 
     /*Windowèâä˙âª*/
-    SetWindowText("DRAGON QUEST");
-    SetGraphMode(WIN_X, WIN_Y, 32);
+    SetWindowText("2D RPG");
+    SetGraphMode(256, 256, 32);
     SetBackgroundColor(255, 255, 255);
     SetDrawScreen(DX_SCREEN_BACK);
-    SetWindowSize(1024, 960);
+    SetWindowSize(960, 640);
 
     Picture.Load();
     Color.Load();
@@ -45,8 +47,8 @@ int WINAPI WinMain(
         case COURCE::START:
             Title.Draw();
             break;
-        case COURCE::WORLD:
-
+        case COURCE::MAP:
+            Stage.Draw();
             break;
         };
     }

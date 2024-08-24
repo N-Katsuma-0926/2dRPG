@@ -14,9 +14,9 @@ public:
 		DrawFormatStringToHandle(20, 152, Color.RED,  Font.c[16], "Press Enter to Start");
 		DrawFormatStringToHandle(18, 150, Color.WHITE, Font.c[16], "Press Enter to Start");
 
-		if (CheckHitKey(KEY_INPUT_RETURN) == 1)
+		if (Key[KEY_INPUT_RETURN] == 1)
 		{
-			Scene = COURCE::WORLD;
+			Scene = COURCE::MAP;
 		}
 	}
 private:

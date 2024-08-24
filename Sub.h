@@ -2,7 +2,7 @@
 /* Sub.h */
 
 
-class
+class Font
 {
 public:
 
@@ -18,7 +18,7 @@ public:
 private:
 }Font;
 
-class
+class Color
 {
 public:
 
