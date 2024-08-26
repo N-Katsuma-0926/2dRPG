@@ -1,5 +1,5 @@
 #pragma once
-#include"Picture.h"
+
 #include<fstream>
 #include<sstream>
 #include<string>
@@ -58,6 +58,7 @@ public:
 					break;
 				case 6:
 					pic = Picture.Map[6];
+					break;
 				case 7:
 					pic = Picture.Map[7];
 					break;
