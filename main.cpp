@@ -34,6 +34,7 @@ int WINAPI WinMain(
     Picture.Load();
     Color.Load();
     Font.Load();
+    Stage.Read();
 
     while (ScreenFlip() == 0 &&
         ClearDrawScreen &&
