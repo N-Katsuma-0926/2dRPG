@@ -26,7 +26,7 @@ int WINAPI WinMain(
 
     /*Windowèâä˙âª*/
     SetWindowText("2d RPG");
-    SetGraphMode(256, 256, 32);
+    SetGraphMode(960, 640, 32);
     SetBackgroundColor(255, 255, 255);
     SetDrawScreen(DX_SCREEN_BACK);
     SetWindowSize(960, 640);
