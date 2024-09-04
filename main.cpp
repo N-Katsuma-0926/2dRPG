@@ -2,16 +2,29 @@
 enum COURCE
 {
     START,
-    MAP,
+    SOILMAP,
+    GLASSMAP,
+    
 };
 int Scene = COURCE::START;
 
 #include <DxLib.h>
+
+
+
+
 #include "Picture.h"
 #include "Sub.h"
 #include "Title.h"
 //#include "player.h"
-#include "Stage.h"
+#include "GlassStage.h"
+#include "SoilStage.h"
+#include "HeroCat.h"
+
+
+#define WINDOW_SIZE_WID 960
+#define WINDOW_SIZE_HIG 640
+
 
 
 
@@ -26,16 +39,17 @@ int WINAPI WinMain(
 
     /*Windowèâä˙âª*/
     SetWindowText("2d RPG");
-    SetGraphMode(960, 640, 32);
+    SetGraphMode(WINDOW_SIZE_WID, WINDOW_SIZE_HIG, 32);
     SetBackgroundColor(255, 255, 255);
     SetDrawScreen(DX_SCREEN_BACK);
-    SetWindowSize(960, 640);
-
+    
+    if (CatSysInitProc() == false)return false;
     Picture.Load();
     Color.Load();
     Font.Load();
-    Stage.Read();
-
+    GlassStage.Read();
+    SoilStage.Read();
+    
     while (ScreenFlip() == 0 &&
         ClearDrawScreen &&
         ProcessMessage() == 0 &&
@@ -47,10 +61,16 @@ int WINAPI WinMain(
         {
         case COURCE::START:
             Title.Draw();
+            CatFlg = false;
             break;
-        case COURCE::MAP:
-            Stage.Draw();
+        case COURCE::SOILMAP:
+            SoilStage.Draw();
+            CatDraw();
             break;
+        case COURCE::GLASSMAP:
+            GlassStage.Draw();
+            break;
+        
         };
     }
 

@@ -19,12 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BossRat.cpp" />
+    <ClCompile Include="HeroCat.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BossRat.h" />
     <ClInclude Include="Picture.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="Stage.h" />
+    <ClInclude Include="HeroCat.h" />
+    <ClInclude Include="GlassStage.h" />
+    <ClInclude Include="SoilStage.h" />
+    <ClInclude Include="StDefine.h" />
     <ClInclude Include="Sub.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>

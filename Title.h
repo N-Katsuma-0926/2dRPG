@@ -16,7 +16,7 @@ public:
 
 		if (Key[KEY_INPUT_RETURN] == 1)
 		{
-			Scene = COURCE::MAP;
+			Scene = COURCE::SOILMAP;
 		}
 	}
 private:
