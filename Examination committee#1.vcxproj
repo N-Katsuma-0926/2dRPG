@@ -22,9 +22,11 @@
     <ClCompile Include="BossRat.cpp" />
     <ClCompile Include="HeroCat.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BossRat.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="HeroCat.h" />
     <ClInclude Include="GlassStage.h" />

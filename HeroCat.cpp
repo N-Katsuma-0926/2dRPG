@@ -10,12 +10,12 @@
 int CatPosX;
 int CatPosY;
 int CatImage;
-bool CatFlg;
+bool CatFlg = false;
 
 //”L‚Ì‹N“®‚Ì‰Šú‰»ˆ—
 bool CatSysInitProc(void) {
 
-	CatImage = LoadGraph("Image2/HeroCat.png");
+	CatImage = LoadGraph("Image2/HeroCat3.png");
 	if (CatImage == -1) return -1;
 
 	return true;
@@ -64,8 +64,8 @@ void CatMoveProc(void) {
 }
 
 void CatDraw(void) {
-	if (CatFlg == true) {
-		DrawGraph(CatPosX, CatPosY, CatImage, true);
+	if (CatFlg) {
+		DrawGraph(CatPosX, CatPosY,CatImage, true);
 	}
-	
+	//DrawGraph(CatPosX, CatPosY, CatImage, true);
 }

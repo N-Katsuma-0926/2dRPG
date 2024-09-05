@@ -16,10 +16,11 @@ int Scene = COURCE::START;
 #include "Picture.h"
 #include "Sub.h"
 #include "Title.h"
-//#include "player.h"
 #include "GlassStage.h"
 #include "SoilStage.h"
 #include "HeroCat.h"
+#include "BossRat.h"
+#include "NPC.h"
 
 
 #define WINDOW_SIZE_WID 960
@@ -43,13 +44,31 @@ int WINAPI WinMain(
     SetBackgroundColor(255, 255, 255);
     SetDrawScreen(DX_SCREEN_BACK);
     
-    if (CatSysInitProc() == false)return false;
+
+    //ä÷êîÇåƒÇ—çûÇﬁ
+
+    
     Picture.Load();
     Color.Load();
     Font.Load();
     GlassStage.Read();
     SoilStage.Read();
-    
+    //îLÇøÇ·ÇÒ
+    CatSysInitProc();
+    CatInitProc();
+    CatMoveProc();
+    //ÇÀÇ∏Ç›
+    RatInitProc();
+    RatSysInitProc();
+    //NPC
+    HumanSysInitProc();
+    HumanInitProc();
+    HumanUpdateProc();
+
+
+
+
+    //ÉãÅ[ÉvÇâÒÇ∑
     while (ScreenFlip() == 0 &&
         ClearDrawScreen &&
         ProcessMessage() == 0 &&
@@ -61,16 +80,30 @@ int WINAPI WinMain(
         {
         case COURCE::START:
             Title.Draw();
-            CatFlg = false;
             break;
+
+
         case COURCE::SOILMAP:
             SoilStage.Draw();
             CatDraw();
+            CatMoveProc();
+            RatDraw();
+            HumanDraw();
+           
+
             break;
+
+
         case COURCE::GLASSMAP:
             GlassStage.Draw();
+            CatDraw();
+            CatMoveProc();
+            RatDraw();
+            HumanDraw();
+
+            
             break;
-        
+
         };
     }
 

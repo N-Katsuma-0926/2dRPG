@@ -2,7 +2,7 @@
 
 const int CAT_SIZE_WID = 32;
 const int CAT_SIZE_HIG = 32;
-const int CAT_MOVE_SPEED = 5;
+const int CAT_MOVE_SPEED = 2;
 
 //ŒöŠJ‚·‚é•Ï”
 extern int CatPosX;
