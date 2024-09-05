@@ -3,6 +3,7 @@ enum COURCE
 {
     START,
     SOILMAP,
+    BATTLE,
     GLASSMAP,
     
 };
@@ -21,6 +22,7 @@ int Scene = COURCE::START;
 #include "HeroCat.h"
 #include "BossRat.h"
 #include "NPC.h"
+//#include"KeyStatus.h"
 
 
 #define WINDOW_SIZE_WID 960
@@ -63,7 +65,8 @@ int WINAPI WinMain(
     //NPC
     HumanSysInitProc();
     HumanInitProc();
-    HumanUpdateProc();
+   
+    
 
 
 
@@ -89,6 +92,7 @@ int WINAPI WinMain(
             CatMoveProc();
             RatDraw();
             HumanDraw();
+            HumanUpdateProc();
            
 
             break;
@@ -100,6 +104,7 @@ int WINAPI WinMain(
             CatMoveProc();
             RatDraw();
             HumanDraw();
+            
 
             
             break;

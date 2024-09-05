@@ -14,7 +14,7 @@ public:
 		DrawFormatStringToHandle(200, 152, Color.RED,  Font.c[16], "Press Enter to Start");
 		//DrawFormatStringToHandle(180, 150, Color.WHITE, Font.c[16], "Press Enter to Start");
 
-		if (Key[KEY_INPUT_RETURN] == 1)
+		if (CheckHitKey(KEY_INPUT_SPACE) == 1)
 		{
 			Scene = COURCE::SOILMAP;
 		}

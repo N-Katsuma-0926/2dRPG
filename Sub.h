@@ -39,6 +39,10 @@ public:
 private:
 }Color;
 
+
+
+
+
 int Key[256];
 
 int GetKey()
@@ -58,3 +62,5 @@ int GetKey()
 	}
 	return 0;
 }
+
+

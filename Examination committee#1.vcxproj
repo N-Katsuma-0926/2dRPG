@@ -19,13 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BattleScene.cpp" />
     <ClCompile Include="BossRat.cpp" />
     <ClCompile Include="HeroCat.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleStage.h" />
     <ClInclude Include="BossRat.h" />
+    <ClInclude Include="KeyStatus.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="HeroCat.h" />
