@@ -16,7 +16,7 @@ public:
 	}Chip;
 
 		void Read() {
-			std::ifstream file("CourceMap/WorldMap.txt");
+			std::ifstream file("CourceMap/WorldMap2.txt");
 			std::string line;
 
 			int y = 0;

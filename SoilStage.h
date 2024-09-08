@@ -5,6 +5,9 @@
 #include<sstream>
 #include<string>
 
+#include"HeroCat.h"
+#include"BossRat.h"
+
 
 
 
@@ -173,10 +176,18 @@ public:
 				DrawGraph(CELL * x, CELL * y, pic, false);
 			}
 		}
-		//if (CheckHitKey(KEY_INPUT_RETURN) == 1)
-		//{
-			//Scene = COURCE::GLASSMAP;
-		//}
+		if (RatPosX - 30 <= CatPosX && CatPosX + CAT_SIZE_WID <= RatPosX + RAT_SIZE_WID + 30 && CatPosY <= RatPosY + RAT_SIZE_HIG  && CatPosY + CAT_SIZE_HIG >= RatPosY)
+		{
+			
+			Scene = COURCE::BATTLE;
+		}
+
+		if (CheckHitKey(KEY_INPUT_RETURN) == 1)
+		{
+			Scene = COURCE::GLASSMAP;
+		}
+		
+
 	}
 	
 	

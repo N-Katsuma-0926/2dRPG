@@ -69,10 +69,6 @@ void HumanInitProc(void)
 
 	TalkProgress = 0;
 
-
-
-
-
 }
 
 void HumanUpdateProc(void)
@@ -160,7 +156,7 @@ void HumanDraw(void)
 			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "ä˙ë“ÇµÇƒÇ¢ÇÈÇºÅIÅI", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0)
 			{
-				TalkProgress == 0;
+				TalkProgress = 0;
 				HumanTalkFlg = false;
 
 

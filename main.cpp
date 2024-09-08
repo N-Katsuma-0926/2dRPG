@@ -5,6 +5,7 @@ enum COURCE
     SOILMAP,
     BATTLE,
     GLASSMAP,
+    END,
     
 };
 int Scene = COURCE::START;
@@ -22,6 +23,7 @@ int Scene = COURCE::START;
 #include "HeroCat.h"
 #include "BossRat.h"
 #include "NPC.h"
+#include "BattleStage.h"
 //#include"KeyStatus.h"
 
 
@@ -65,6 +67,10 @@ int WINAPI WinMain(
     //NPC
     HumanSysInitProc();
     HumanInitProc();
+    //バトルシーン
+    B_RatSysInitProc();
+    B_RatInitProc();
+   
    
     
 
@@ -97,6 +103,14 @@ int WINAPI WinMain(
 
             break;
 
+        case COURCE::BATTLE:
+            B_RatDraw();
+            B_RatView();
+
+            break;
+
+
+
 
         case COURCE::GLASSMAP:
             GlassStage.Draw();
@@ -107,6 +121,10 @@ int WINAPI WinMain(
             
 
             
+            break;
+
+
+        case COURCE::END:
             break;
 
         };

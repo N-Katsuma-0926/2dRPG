@@ -65,7 +65,8 @@ void CatMoveProc(void) {
 
 void CatDraw(void) {
 	if (CatFlg) {
-		DrawGraph(CatPosX, CatPosY,CatImage, true);
+		DrawGraph(CatPosX, CatPosY, CatImage, true);
 	}
-	//DrawGraph(CatPosX, CatPosY, CatImage, true);
 }
+
+	
