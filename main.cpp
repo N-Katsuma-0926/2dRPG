@@ -70,6 +70,10 @@ int WINAPI WinMain(
     //バトルシーン
     B_RatSysInitProc();
     B_RatInitProc();
+    B_RatUpdateProc(); 
+    
+    
+
    
    
     
@@ -106,6 +110,7 @@ int WINAPI WinMain(
         case COURCE::BATTLE:
             B_RatDraw();
             B_RatView();
+            B_RatUpdateProc();
 
             break;
 

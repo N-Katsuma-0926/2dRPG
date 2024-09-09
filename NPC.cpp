@@ -119,7 +119,7 @@ void HumanDraw(void)
 		DrawBox(30, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG , WINDOW_SIZE_WID - 30, WINDOW_SIZE_HIG -30, 0xffffff, true); //会話を表示するウィンドウの描画
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);	//表示画像の明るさの減算をクリア
 
-
+		
 		switch (TalkProgress)
 		{
 		case 0:

@@ -181,12 +181,7 @@ public:
 			
 			Scene = COURCE::BATTLE;
 		}
-
-		if (CheckHitKey(KEY_INPUT_RETURN) == 1)
-		{
-			Scene = COURCE::GLASSMAP;
-		}
-		
+	
 
 	}
 	
