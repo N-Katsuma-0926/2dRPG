@@ -1,15 +1,3 @@
-
-enum COURCE
-{
-    START,
-    SOILMAP,
-    BATTLE,
-    GLASSMAP,
-    END,
-    
-};
-int Scene = COURCE::START;
-
 #include <DxLib.h>
 
 
@@ -24,14 +12,17 @@ int Scene = COURCE::START;
 #include "BossRat.h"
 #include "NPC.h"
 #include "BattleStage.h"
-//#include"KeyStatus.h"
+#include "Scene.h"
+#include "ENDScene.h"
+
+
 
 
 #define WINDOW_SIZE_WID 960
 #define WINDOW_SIZE_HIG 640
 
 
-
+int Scene;
 
 int WINAPI WinMain(
     _In_ HINSTANCE hInstance,
@@ -48,7 +39,7 @@ int WINAPI WinMain(
     SetBackgroundColor(255, 255, 255);
     SetDrawScreen(DX_SCREEN_BACK);
     
-
+    Scene = COURCE::START;
     //ä÷êîÇåƒÇ—çûÇﬁ
 
     
@@ -71,6 +62,11 @@ int WINAPI WinMain(
     B_RatSysInitProc();
     B_RatInitProc();
     B_RatUpdateProc(); 
+
+    //èIóπâÊñ 
+    EndSysInit();
+    
+    
     
     
 
@@ -92,6 +88,7 @@ int WINAPI WinMain(
         switch (Scene)
         {
         case COURCE::START:
+            Title.TitleInit();
             Title.Draw();
             break;
 
@@ -122,7 +119,8 @@ int WINAPI WinMain(
             CatDraw();
             CatMoveProc();
             RatDraw();
-            HumanDraw();
+            HumanDraw2();
+            HumanUpdateProc();
             
 
             
@@ -130,6 +128,8 @@ int WINAPI WinMain(
 
 
         case COURCE::END:
+            EndUpdate();
+            EndDraw();
             break;
 
         };

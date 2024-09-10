@@ -7,6 +7,7 @@
 
 #include"HeroCat.h"
 #include"BossRat.h"
+#include"Scene.h"
 
 
 

@@ -4,6 +4,7 @@
 
 #include"HeroCat.h"
 #include"NPC.h"
+#include"Scene.h"
 //#include"KeyStatus.h"
 //#include"Sub.h"
 
@@ -17,7 +18,7 @@ int HumanPosY;
 int HumanImage;
 bool HumanFlg = false;
 bool HumanTalkFlg = false;
-
+int HumanTalkPattern;
 //人間の会話用吹き出し
 int BubblePosX;
 int BubblePosY;
@@ -29,7 +30,8 @@ int nowReturnKey;
 int prevReturnKey;
 
 //会話の進行度
-int TalkProgress;
+int TalkProgress;//攻略前
+int TalkProgress2;//攻略後
 
 
 bool HumanSysInitProc(void)
@@ -68,6 +70,7 @@ void HumanInitProc(void)
 	nowReturnKey = prevReturnKey = 0;
 
 	TalkProgress = 0;
+	HumanTalkPattern = 0;
 
 }
 
@@ -111,72 +114,134 @@ void HumanDraw(void)
 	{
 		DrawGraph(BubblePosX, BubblePosY, BubbleImage, true);
 	}
+	
+	//人間と猫のクリア前会話描画
+		if (HumanTalkFlg == true)
+		{
+			SetDrawBlendMode(DX_BLENDMODE_SUB, 150);	//表示画像の明るさの減算
+			DrawBox(30, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG, WINDOW_SIZE_WID - 30, WINDOW_SIZE_HIG - 30, 0xffffff, true); //会話を表示するウィンドウの描画
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);	//表示画像の明るさの減算をクリア
 
-	//人間と猫の会話描画
+
+			switch (TalkProgress)
+			{
+			case 0:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "こんにちは", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 1:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "勇者猫よ。。", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 2:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "この街を救ってくれないか？。。", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 3:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "この村は町の東側に居るネズミによって", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 4:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "草原の緑が奪われてしまったのだ。。", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 5:
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "やつを倒してこの街の草原を取り戻してくれ！", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
+				break;
+			case 6:SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+				DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "期待しているぞ！！", 0xffffff);
+				if (nowReturnKey == 1 && prevReturnKey == 0)
+				{
+					TalkProgress = 0;
+					HumanTalkFlg = false;
+				}
+				break;
+			}
+		}
+
+
+}
+
+
+void HumanDraw2(void)
+{
+	//人間の描画
+	if (HumanFlg)
+	{
+		DrawGraph(HumanPosX, HumanPosY, HumanImage, true);
+	}
+	//吹き出しの描画
+	if (BubbleFlg == true)
+	{
+		DrawGraph(BubblePosX, BubblePosY, BubbleImage, true);
+	}
+
+	//人間と猫のクリア前会話描画
 	if (HumanTalkFlg == true)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_SUB, 150);	//表示画像の明るさの減算
-		DrawBox(30, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG , WINDOW_SIZE_WID - 30, WINDOW_SIZE_HIG -30, 0xffffff, true); //会話を表示するウィンドウの描画
+		DrawBox(30, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG, WINDOW_SIZE_WID - 30, WINDOW_SIZE_HIG - 30, 0xffffff, true); //会話を表示するウィンドウの描画
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);	//表示画像の明るさの減算をクリア
 
-		
+
 		switch (TalkProgress)
 		{
 		case 0:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "こんにちは", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "おぉ！勇者猫様！！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 1:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "勇者猫よ。。",0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "あの忌まわしきネズミを倒してくださったんですね！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 2:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "この街を救ってくれないか？。。", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "ありがとうございます！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 3:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "この村は町の東側に居るネズミによって", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "見てください！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 4:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "草原の緑が奪われてしまったのだ。。", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "おかげでこの街に緑が戻りました！！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 5:
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "やつを倒してこの街の草原を取り戻してくれ！", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "本当に感謝しています！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0) TalkProgress += 1;
 			break;
 		case 6:SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "期待しているぞ！！", 0xffffff);
+			DrawString(128, WINDOW_SIZE_HIG - HUMAN_TALK_BOX_HIG / 3 * 2, "ありがとう！", 0xffffff);
 			if (nowReturnKey == 1 && prevReturnKey == 0)
 			{
-				TalkProgress = 0;
+				TalkProgress += 1;
 				HumanTalkFlg = false;
-
-
+				
 			}
 			break;
-
-
+		case 7:
+			if (nowReturnKey == 1 && prevReturnKey == 0)
+			{
+				Scene = COURCE::END;
+			}
+			
+			break;
+		
 
 		}
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 

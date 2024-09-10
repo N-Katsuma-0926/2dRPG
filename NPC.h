@@ -27,6 +27,7 @@ extern int prevReturnKey;
 bool HumanSysInitProc(void);
 void HumanInitProc(void);
 void HumanDraw();
+void HumanDraw2();
 void HumanUpdateProc(void);
 
 

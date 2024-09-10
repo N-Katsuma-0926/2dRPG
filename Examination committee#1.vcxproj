@@ -28,13 +28,14 @@
   <ItemGroup>
     <ClInclude Include="BattleStage.h" />
     <ClInclude Include="BossRat.h" />
+    <ClInclude Include="ENDScene.h" />
     <ClInclude Include="KeyStatus.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="HeroCat.h" />
     <ClInclude Include="GlassStage.h" />
     <ClInclude Include="SoilStage.h" />
-    <ClInclude Include="StDefine.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Sub.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
