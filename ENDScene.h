@@ -12,16 +12,18 @@ void EndSysInit(void)
 	EndPosX = 130;
 	EndPosY = 0;
 	EndImage = LoadGraph("Image2/End.png");
-
+	EndFlg == false;
 }
 
 void EndUpdate(void)
 {
-	EndPosX = 130;
-	EndPosY += 5;
-	if (EndPosY <= 245)
-	{
-		EndPosY = 245;
+	EndFlg = true;
+	if (EndFlg == true) {
+		EndPosY += 5;
+		if (EndPosY >= 245)
+		{
+			EndPosY == 245;
+		}
 	}
 
 }

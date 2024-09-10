@@ -229,16 +229,10 @@ void HumanDraw2(void)
 			{
 				TalkProgress += 1;
 				HumanTalkFlg = false;
-				
-			}
-			break;
-		case 7:
-			if (nowReturnKey == 1 && prevReturnKey == 0)
-			{
 				Scene = COURCE::END;
 			}
-			
 			break;
+		
 		
 
 		}

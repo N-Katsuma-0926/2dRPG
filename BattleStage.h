@@ -97,7 +97,11 @@ int BBiteProc;
 int BScratchProc;
 int BFoodProc;
 int BTulleProc;
-
+int InBattlePframe;
+int InBattleBframe;
+int InBattleSframe;
+int InBattleFframe;
+int InBattleTframe;
 
 
 
@@ -199,6 +203,12 @@ void B_RatInitProc(void)
 	BTulleProc = 0;
 
 	AttacPattern = 0;
+	InBattlePframe = 0;
+	InBattleBframe = 0;
+	InBattleSframe = 0;
+	InBattleFframe = 0;
+	InBattleTframe = 0;
+
 
 
 
@@ -218,7 +228,14 @@ void B_RatUpdateProc(void)
 	prevSpaceKey = nowSpaceKey;
 	nowSpaceKey = CheckHitKey(KEY_INPUT_SPACE);
 
-
+	if (RatAttackFlg == false) {
+		InBattlePframe = 0;
+		InBattleBframe = 0;
+		InBattleSframe = 0;
+		InBattleFframe = 0;
+		InBattleTframe = 0;
+	}
+	
 
 
 }
@@ -405,13 +422,22 @@ void B_RatDraw(void)
 			
 			if (RatAttackFlg == true)
 			{
+				
 				switch (AttacPattern) {
 				case 1:
-
+					
 					DrawString(100, B_ALL_WINDOW_HIG - 320, "勇者猫の猫パンチ！！", 0xffffff);
-					DrawFormatString(300, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスに%d与えた！！", CatPunchDam);
-					if (nowSpaceKey == 1 && prevSpaceKey == 0)
+					DrawFormatString(300, B_ALL_WINDOW_HIG - 320, 0xffffff, "ボスに%d与えた！！", CatPunchDam);
+					InBattlePframe == 0;
+					if (InBattlePframe <= 360) {
+
+						DrawFormatString(100, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスの攻撃によって%dくらった！！", RatAttack);
+
+						InBattlePframe++;
+					}
+					else
 					{
+						CatHp -= RatAttack;
 						RatAttackFlg = false;
 					}
 					break;
@@ -419,33 +445,66 @@ void B_RatDraw(void)
 
 				case 2:
 					DrawString(100, B_ALL_WINDOW_HIG - 320, "勇者猫の噛みつき！！", 0xffffff);
-					DrawFormatString(300, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスに%d与えた！！", CatBiteDam);
-					if (nowSpaceKey == 1 && prevSpaceKey == 0)
+					DrawFormatString(300, B_ALL_WINDOW_HIG - 320, 0xffffff, "ボスに%d与えた！！", CatBiteDam);
+					InBattleBframe == 0;
+					if (InBattleBframe <= 360) {
+
+						DrawFormatString(100, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスの攻撃によって%dくらった！！", RatAttack);
+
+						InBattleBframe++;
+					}
+					else
 					{
+						CatHp -= RatAttack;
 						RatAttackFlg = false;
 					}
+					
 					break;
 				case 3:
 					DrawString(100, B_ALL_WINDOW_HIG - 320, "勇者猫のひっかき！！", 0xffffff);
-					DrawFormatString(300, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスに%d与えた！！", CatScratchDam);
-					if (nowSpaceKey == 1 && prevSpaceKey == 0)
+					DrawFormatString(300, B_ALL_WINDOW_HIG - 320, 0xffffff, "ボスに%d与えた！！", CatScratchDam);
+					InBattleSframe == 0;
+					if (InBattleSframe <= 360) {
+
+						DrawFormatString(100, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスの攻撃によって%dくらった！！", RatAttack);
+
+						InBattleSframe++;
+					}
+					else
 					{
+						CatHp -= RatAttack;
 						RatAttackFlg = false;
 					}
 					break;
 				case 4:
 					DrawString(100, B_ALL_WINDOW_HIG - 320, "勇者猫はカリカリを食べた！！", 0xffffff);
-					DrawFormatString(300, B_ALL_WINDOW_HIG - 290, 0xffffff, "体力が%d回復した！！", CatFoodRec);
-					if (nowSpaceKey == 1 && prevSpaceKey == 0)
+					DrawFormatString(300, B_ALL_WINDOW_HIG - 320, 0xffffff, "体力が%d回復した！！", CatFoodRec);
+					InBattleFframe == 0;
+					if (InBattleFframe <= 360) {
+
+						DrawFormatString(100, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスの攻撃によって%dくらった！！", RatAttack);
+
+						InBattleFframe++;
+					}
+					else
 					{
+						CatHp -= RatAttack;
 						RatAttackFlg = false;
 					}
 					break;
 				case 5:
 					DrawString(100, B_ALL_WINDOW_HIG - 320, "勇者猫はチュールを食べた！！", 0xffffff);
-					DrawFormatString(300, B_ALL_WINDOW_HIG - 290, 0xffffff, "体力が%d回復した！！", CatPunchDam);
-					if (nowSpaceKey == 1 && prevSpaceKey == 0)
+					DrawFormatString(400, B_ALL_WINDOW_HIG - 320, 0xffffff, "体力が%d回復した！！", CatTulleRec);
+					InBattleTframe == 0;
+					if (InBattleTframe <= 360) {
+
+						DrawFormatString(100, B_ALL_WINDOW_HIG - 290, 0xffffff, "ボスの攻撃によって%dくらった！！", RatAttack);
+
+						InBattleTframe++;
+					}
+					else
 					{
+						CatHp -= RatAttack;
 						RatAttackFlg = false;
 					}
 					break;

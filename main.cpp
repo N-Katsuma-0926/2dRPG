@@ -65,6 +65,7 @@ int WINAPI WinMain(
 
     //èIóπâÊñ 
     EndSysInit();
+    EndUpdate();
     
     
     
@@ -128,7 +129,7 @@ int WINAPI WinMain(
 
 
         case COURCE::END:
-            EndUpdate();
+           
             EndDraw();
             break;
 
